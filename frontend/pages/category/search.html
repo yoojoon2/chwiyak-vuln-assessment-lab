@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PREAM | 검색</title>
+
+  <!-- Tailwind + 공통스타일 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/frontend/dist/style.css" />
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="/frontend/js/navigation.js" defer></script>
+
+  <style>
+    /* category.html과 동일 톤의 보조 스타일 */
+    .cap-grad { background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+    .fade { transition: opacity 1s ease-in-out; opacity: 0; }
+    .fade.active { opacity: 1; }
+    .hover-zoom { transition: transform .5s cubic-bezier(.25,.1,.25,1); }
+    .hover-zoom:hover { transform: scale(1.05); }
+  </style>
+</head>
+
+<body class="bg-white text-slate-900">
+  <!-- 상단 네비게이션 -->
+  <div id="navigation" data-src="/frontend/components/navigation.html"></div>
+
+  <!-- 제목 영역 -->
+  <header class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+    <h1 id="searchTitle" class="text-2xl sm:text-3xl font-bold tracking-tight">
+      검색결과
+    </h1>
+    <p id="searchMeta" class="mt-2 text-sm text-slate-500">
+      <!-- “총 N개” 등 메타 정보가 동적으로 표시됩니다. -->
+    </p>
+    <hr class="mt-4 border-slate-200" />
+  </header>
+
+  <!-- 결과 그리드 (category 페이지와 동일한 카드 그리드) -->
+  <main class="max-w-6xl mx-auto px-2 sm:px-4 lg:px-6 mt-6">
+    <div id="searchGrid" class="grid grid-cols-2 md:grid-cols-4 gap-0"></div>
+  </main>
+
+  <!-- 스크립트 -->
+  <script src="/frontend/js/category/search.js" defer></script>
+</body>
+</html>

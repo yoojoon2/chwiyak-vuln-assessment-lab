@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>상품 등록 | PREAM</title>
+
+    <!-- 상품 등록 스크립트 파일 -->
+    <script src="/frontend/js/seller/seller-product-register.js" defer></script>
+
+    <!-- Tailwind & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"/>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="/frontend/dist/style.css"/>
+
+    <!-- 네비게이션바 생성 스크립트 -->
+    <script src="/frontend/js/navigation.js" defer></script>
+
+  </head>
+
+  <!-- 스크롤 가능하게 수정: overflow-y-auto -->
+  <body class="min-h-screen flex flex-col items-center bg-white text-gray-800 overflow-y-auto">
+    <!-- 상단 네비게이션 -->
+    <div id="navigation" data-src="/frontend/components/navigation.html"></div>
+
+    <!-- 상품 등록 박스 -->
+    <div class="w-full max-w-md px-4 mx-auto text-center relative pb-24 mt-12 sm:mt-24 scroll-mt-24">
+      <!-- 상단 제목 + 취소 버튼 영역 -->
+      <div class="w-full flex items-center justify-center mb-8 relative">
+        <!-- 우측 상단 'X in a circle' 버튼 -->
+        <button onclick="cancelRegister()"
+                aria-label="등록 취소"
+                title="등록 취소"
+                class="absolute right-0 text-gray-500 hover:text-black p-2 rounded-full hover:bg-gray-100 transition focus:outline-none focus:ring-2 focus:ring-black">
+          <i data-lucide="x-circle" class="w-5 h-5"></i>
+          <span class="sr-only">등록 취소</span>
+        </button>
+
+        <h3 class="text-xl font-bold">상품 등록</h3>
+      </div>
+      
+      <!-- Step 1: 기본 정보 -->
+      <div id="step1" class="scroll-mt-24 space-y-5 transition-all duration-500">
+        <div class="text-left">
+          <label class="text-sm font-semibold">상품 이름</label>
+          <input id="productName" type="text" placeholder="예) PREAM 로고 티셔츠"
+                 class="w-full border-b border-gray-300 focus:border-black outline-none py-2 text-sm"/>
+          <p id="errName" class="text-xs text-red-500 hidden mt-1">상품 이름을 입력해주세요.</p>
+        </div>
+
+        <div class="text-left">
+          <label class="text-sm font-semibold mb-2 block">카테고리</label>
+
+          <!-- 끝부분 잘림 방지: 여유 공간 + 버튼 높이 증가 -->
+          <div id="categoryGroup" class="grid grid-cols-3 gap-3">
+            <!-- hover: 아주 옅은 파랑 / 선택: 옅은 파랑 유지 -->
+            <button type="button" data-category="top" class="cat-btn px-3 py-2.5 bg-gray-100 rounded-lg text-sm border border-transparent hover:bg-sky-50 transition-colors">상의</button>
+            <button type="button" data-category="bottoms" class="cat-btn px-3 py-2.5 bg-gray-100 rounded-lg text-sm border border-transparent hover:bg-sky-50 transition-colors">하의</button>
+            <button type="button" data-category="accessory" class="cat-btn px-3 py-2.5 bg-gray-100 rounded-lg text-sm border border-transparent hover:bg-sky-50 transition-colors">악세사리</button>
+            <button type="button" data-category="beauty" class="cat-btn px-3 py-2.5 bg-gray-100 rounded-lg text-sm border border-transparent hover:bg-sky-50 transition-colors">뷰티</button>
+            <button type="button" data-category="shoes" class="cat-btn px-3 py-2.5 bg-gray-100 rounded-lg text-sm border border-transparent hover:bg-sky-50 transition-colors">신발</button>
+            <button type="button" data-category="bag" class="cat-btn px-3 py-2.5 bg-gray-100 rounded-lg text-sm border border-transparent hover:bg-sky-50 transition-colors">가방</button>
+          </div>
+          <input id="productCategory" type="hidden"/>
+          <p id="errCategory" class="text-xs text-red-500 hidden mt-1">카테고리를 선택해주세요.</p>
+        </div>
+
+        <div class="text-left">
+          <label class="text-sm font-semibold">상품 가격(원)</label>
+          <input id="productPrice" type="number" min="0" step="100"
+                 placeholder="예) 29900"
+                 class="w-full border-b border-gray-300 focus:border-black outline-none py-2 text-sm"/>
+          <p id="errPrice" class="text-xs text-red-500 hidden mt-1">유효한 가격을 입력해주세요.</p>
+        </div>
+
+        <button id="toStep2"
+                class="w-full bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-900 transition">
+          다음
+        </button>
+      </div>
+
+      <!-- Step 2: 이미지 업로드 (스크롤 가능) -->
+      <div id="step2" class="scroll-mt-24 hidden text-left space-y-5 translate-x-full opacity-0 transition-all duration-700 ease-in-out">
+        <!-- 메인 상품 이미지 -->
+        <div>
+          <label class="text-sm font-semibold">상품 이미지(메인)</label>
+          <div class="mt-2">
+            <label for="mainImage"
+                   class="w-full flex items-center justify-between bg-gray-100 p-3 rounded cursor-pointer">
+              <span class="text-sm">이미지 선택</span>
+              <i data-lucide="image" class="w-4 h-4"></i>
+            </label>
+            <input id="mainImage" type="file" accept=".jpg,.jpeg,image/jpeg" class="hidden"/>
+            <p class="text-xs text-gray-500 mt-2">
+              권장 비율/크기: <b>1:1, 1090×1090</b> (미리보기는 비율이 <b>깨지지 않도록</b> 표시됩니다)
+            </p>
+          </div>
+
+          <!-- 정사각형 미리보기 -->
+          <div id="mainPreviewWrap" class="mt-3 relative w-full rounded bg-gray-100 overflow-hidden pt-[100%] hidden">
+            <img id="mainPreview" alt="상품 이미지 미리보기"
+                 class="absolute inset-0 w-full h-full object-contain"/>
+          </div>
+          <p id="errMainImage" class="text-xs text-red-500 hidden mt-1">메인 상품 이미지를 업로드해주세요.</p>
+        </div>
+
+        <div class="flex justify-between space-x-4 pt-2">
+          <button type="button" id="backTo1"
+                  class="w-1/2 bg-gray-200 py-3 rounded-md font-semibold text-gray-700 hover:bg-gray-300">
+            이전으로
+          </button>
+          <button type="button" id="toStep3"
+                  class="w-1/2 bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-900">
+            다음
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: 상세 설명 + 등록 -->
+      <div id="step3" class="scroll-mt-24 hidden text-left space-y-5 translate-x-full opacity-0 transition-all duration-700 ease-in-out">
+        <div>
+          <label class="text-sm font-semibold">상품 상세 설명</label>
+          <textarea id="productDesc" rows="6" placeholder="소재, 사이즈 정보, 모델 컷 설명 등"
+            class="w-full border border-gray-300 focus:border-black outline-none p-3 rounded text-sm"></textarea>
+        </div>
+
+        <div class="flex justify-between space-x-4 pt-2">
+          <button type="button" id="backTo2"
+                  class="w-1/2 bg-gray-200 py-3 rounded-md font-semibold text-gray-700 hover:bg-gray-300">
+            이전으로
+          </button>
+          <button type="button" id="submitAll"
+                  class="w-1/2 bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-900">
+            상품 등록 완료
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

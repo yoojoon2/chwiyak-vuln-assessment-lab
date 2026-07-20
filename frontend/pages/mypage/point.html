@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>포인트 내역</title>
+  <!-- Tailwind CDN 제거, 프로젝트 공통 CSS만 사용 -->
+  <link rel="stylesheet" href="../../dist/style2.css" />
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <!-- 헤더 -->
+  <header class="bg-white border-b border-gray-200 p-4">
+    <div class="container mx-auto relative max-w-4xl">
+      <button onclick="window.history.back()" class="absolute left-0 text-2xl">←</button>
+      <h1 class="text-xl font-bold text-center">포인트</h1>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-6 max-w-4xl">
+
+    <!-- 사용 가능 포인트 -->
+    <section class="bg-white rounded-lg shadow p-6 mb-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-semibold">사용 가능 포인트</h3>
+          <p class="text-sm text-gray-500 mt-1">주문 결제 시 사용하실 수 있어요.</p>
+        </div>
+        <div class="text-2xl font-extrabold text-blue-600">
+          <span class="point-balance">0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 상세 내역 -->
+    <section class="bg-white rounded-lg shadow p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold">상세 내역</h3>
+        <span class="text-sm text-gray-600">적립/사용</span>
+      </div>
+
+      <!-- ✅ ID를 point-history로 변경 -->
+      <div id="point-history">
+        <!-- JS가 렌더링 -->
+      </div>
+
+      <!-- (선택) 더보기 버튼 필요 시 -->
+      <!-- <button id="load-more" class="w-full mt-4 py-2 border rounded hover:bg-gray-50">더보기</button> -->
+    </section>
+  </main>
+
+  <!-- (선택) 포인트 관련 모달 -->
+  <div id="point-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+    <div class="bg-white rounded-lg w-full max-w-md mx-auto mt-24 p-6">
+      <h2 class="text-lg font-semibold mb-4">포인트 안내</h2>
+      <p class="text-sm text-gray-600">포인트 적립/사용 정책 내용을 표시할 수 있어요.</p>
+      <div class="mt-6 text-right">
+        <button onclick="closeModal()" class="px-4 py-2 bg-gray-900 text-white rounded">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="../../js/mypage/point.js"></script>
+</body>
+</html>

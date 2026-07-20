@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>문의사항 | PREAM</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="/frontend/js/navigation.js" defer></script>
+  <link rel="stylesheet" href="../../dist/style.css" />
+</head>
+
+<body class="min-h-screen bg-white text-gray-900 flex flex-col">
+  <div id="navigation" data-src="../../components/navigation.html"></div>
+
+  <main class="max-w-5xl mx-auto px-4 py-10 flex-1 w-full">
+    <h1 class="text-3xl font-bold text-center mb-8">문의사항</h1>
+    <div class="border-b-2 border-gray-400 mb-6"></div>
+
+    <section class="bg-white rounded-2xl shadow-sm overflow-hidden">
+      <!-- header -->
+      <div class="flex text-sm text-gray-600 font-semibold border-b bg-white">
+        <div class="w-16 py-3 text-center">No</div>
+        <div class="flex-1 py-3 text-center">제목</div>
+        <div class="w-36 py-3 text-center">작성자</div>
+        <div class="w-40 py-3 text-center">작성일</div>
+        <div class="w-28 py-3 text-center">답변상태</div>
+      </div>
+
+      <!-- list -->
+      <ul id="support-list" class="divide-y divide-gray-200"></ul>
+
+      <!-- loading -->
+      <div id="support-loading" class="py-8 text-center text-gray-500 hidden">
+        불러오는 중...
+      </div>
+    </section>
+
+    <!-- 등록 버튼 -->
+    <div class="flex justify-end mt-6">
+      <a
+        href="./support_write.html"
+        class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2 rounded-lg transition"
+      >
+        <i data-lucide="edit-3" class="w-4 h-4 mr-2"></i> 문의 등록
+      </a>
+    </div>
+  </main>
+
+  <footer class="text-center text-gray-500 text-sm py-6 border-t">
+    ⓒ 2025 PREAM. All rights reserved.
+  </footer>
+
+  <script src="/frontend/js/support/support.js" defer></script>
+</body>
+</html>

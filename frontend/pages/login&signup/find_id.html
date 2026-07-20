@@ -1,0 +1,60 @@
+<!-- 아이디 찾기 페이지 (find-id.html) -->
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>아이디 찾기 | PREAM</title>
+
+    <!-- Tailwind & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"/>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="../../dist/style.css" />
+
+    <!-- 공통 JS -->
+    <script src="/frontend/js/main.js" defer></script>
+    <script src="/frontend/js/navigation.js" defer></script>
+  </head>
+
+  <body class="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800">
+    <!-- 상단 네비게이션 -->
+    <div id="navigation" data-src="../../components/navigation.html"></div>
+
+    <!-- 아이디 찾기 박스 -->
+    <div class="w-full max-w-sm mx-auto text-center mt-12">
+      <!-- 상단 제목 + 뒤로가기 버튼 -->
+      <div class="w-full flex items-center justify-center mb-8 relative">
+        <h3 class="text-xl font-bold mb-6">아이디 찾기</h3>
+      </div>
+
+      <form id="findIdForm" class="space-y-5">
+        <div class="text-left">
+          <label class="text-sm font-semibold">이름</label>
+          <input id="name" type="text" class="w-full border-b border-gray-300 focus:border-black outline-none py-2 text-sm"/>
+          <p class="text-xs text-red-500 hidden">이름을 입력해주세요.</p>
+        </div>
+
+        <div class="text-left">
+          <label class="text-sm font-semibold">이메일</label>
+          <input id="email" type="email" class="w-full border-b border-gray-300 focus:border-black outline-none py-2 text-sm"/>
+          <p class="text-xs text-red-500 hidden">이메일을 입력해주세요.</p>
+        </div>
+
+        <button type="button" onclick="sendIdEmail()" class="w-full bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-900">
+          아이디 전송
+        </button>
+
+        <a href="login.html" class="w-full border border-gray-200 py-3 rounded-md flex items-center justify-center gap-2 text-sm font-semibold">
+          로그인으로 돌아가기
+        </a>
+      </form>
+
+      <p id="successMsg" class="text-green-600 text-sm mt-6 hidden">
+        입력하신 이메일로 아이디를 전송했습니다.
+      </p>
+    </div>
+  </body>
+</html>

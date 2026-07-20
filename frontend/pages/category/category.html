@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PREAM | Category</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/frontend/dist/style.css" />
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="/frontend/js/navigation.js" defer></script>
+
+  <style>
+    .cap-grad { background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+    .fade { transition: opacity 1s ease-in-out; opacity: 0; }
+    .fade.active { opacity: 1; }
+
+    /* Sticky 브랜드 탭 */
+    #brandTabs {
+      display: none;
+      overflow-x: auto;
+      white-space: nowrap;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 0.75rem 1rem;
+      background: white;
+      scrollbar-width: none;
+      position: sticky;
+      top: 20vh;
+      z-index: 50;
+    }
+    #brandTabs::-webkit-scrollbar { display: none; }
+    #brandTabs button {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      margin-right: 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+    #brandTabs button.active { background: #000; color: #fff; border-color: #000; }
+
+    .hover-zoom { transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); }
+    .hover-zoom:hover { transform: scale(1.05); }
+  </style>
+</head>
+
+<body class="bg-white text-slate-900">
+  <div id="navigation" data-src="/frontend/components/navigation.html"></div>
+
+  <section class="w-full">
+    <img id="heroImg" src="/frontend/public/models/bag_model.webp"
+      alt="카테고리 대표 이미지" class="w-full h-auto block" loading="eager" />
+  </section>
+
+  <nav id="brandTabs"></nav>
+
+  <main id="categoryRoot" class="w-full">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-0" id="categoryGrid"></div>
+  </main>
+
+  <script src="/frontend/js/mockData.js" defer></script>
+  <script src="/frontend/js/category/category.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<header class="nav">
+  <!-- 우상단: 작은 텍스트 링크 -->
+  <div id="nav-util" class="nav__util">
+    <a href="/frontend/pages/notice/notice.html">공지사항</a>
+    <a href="/frontend/pages/support/support.html">문의사항</a>
+    <a href="/frontend/pages/FAQ/FAQ.html">FAQ</a>
+    <a href="/frontend/pages/login&signup/login.html">로그인</a>
+  </div>
+
+  <!-- 메인행: 좌 로고 / 우 검색+장바구니 -->
+  <div class="nav__main">
+    <a href="/frontend/pages/main.html" class="nav__logo" aria-label="홈으로 이동">
+      <img src="/frontend/public/logo.png" alt="Pream" />
+    </a>
+
+    <div class="nav__right">
+      <!-- ✅ action 추가 -->
+      <form
+        id="siteSearchForm"
+        class="nav__search"
+        role="search"
+        method="get"
+        action="/frontend/pages/category/search.html"
+      >
+        <input
+          type="search"
+          name="q"
+          placeholder="검색어를 입력하세요"
+          aria-label="검색"
+          required
+        />
+        <button type="submit" aria-label="검색">
+          <i data-lucide="search"></i>
+        </button>
+      </form>
+
+      <a class="nav__cart" href="/frontend/pages/cart/cart.html" aria-label="장바구니">
+        <i data-lucide="shopping-bag"></i>
+      </a>
+    </div>
+  </div>
+
+  <nav class="nav__cats">
+    <a href="/frontend/pages/category/category.html?category_name=top">상의</a>
+    <a href="/frontend/pages/category/category.html?category_name=bottoms">하의</a>
+    <a href="/frontend/pages/category/category.html?category_name=bag">가방</a>
+    <a href="/frontend/pages/category/category.html?category_name=shoes">신발</a>
+    <a href="/frontend/pages/category/category.html?category_name=accessory">액세서리</a>
+    <a href="/frontend/pages/category/category.html?category_name=beauty">뷰티</a>
+  </nav>
+</header>

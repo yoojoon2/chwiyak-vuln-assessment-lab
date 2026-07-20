@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PREAM | 메인</title>
+
+    <!-- Tailwind & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="/frontend/dist/style.css"/>
+
+    <script src="/frontend/js/navigation.js" defer></script>
+
+    <!-- 공통 JS -->
+    <script src="/frontend/js/main.js" defer></script>
+
+    <style>
+      /* 부드러운 페이드 애니메이션 */
+      .fade {
+        transition: opacity 1s ease-in-out;
+        opacity: 0;
+      }
+      .fade.active {
+        opacity: 1;
+      }
+
+      /* hover 시 이미지 확대 효과 */
+      .hover-zoom {
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+      .hover-zoom:hover {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+
+  <body class="bg-white text-gray-800">
+    <!-- 상단 네비게이션 -->
+    <div id="navigation" data-src="/frontend/components/navigation.html"></div>
+
+    <!-- 메인 슬라이드 -->
+    <section
+      class="relative w-full max-w-6xl mx-auto mt-12 rounded-lg overflow-hidden shadow-sm"
+    >
+      <div id="slider" class="relative w-full aspect-[16/7]">
+        <!-- 슬라이드 1 -->
+        <div
+          class="fade active absolute inset-0"
+          style="
+            background-image: url('../public/slider/slider_1.png');
+            background-size: cover;
+            background-position: center;
+          "
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+          ></div>
+          <div class="absolute left-12 bottom-10 text-white">
+            <h2 class="text-2xl font-bold mb-2">요즘 날씨,</h2>
+            <h2 class="text-2xl font-bold mb-2">바람막이는 필수</h2>
+            <p class="text-sm">아웃도어부터 스트릿까지 한 눈에!</p>
+          </div>
+        </div>
+
+        <!-- 슬라이드 2 -->
+        <div
+          class="fade absolute inset-0"
+          style="
+            background-image: url('../public/slider/slider_2.png');
+            background-size: cover;
+            background-position: center;
+          "
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+          ></div>
+          <div class="absolute left-12 bottom-10 text-white">
+            <h2 class="text-2xl font-bold mb-2">몬치치 공식 상품 입점</h2>
+            <h2 class="text-2xl font-bold mb-2">베베치치부터 치무탄까지!</h2>
+            <p class="text-sm">단독 발매 상품 보러 가기</p>
+          </div>
+        </div>
+
+        <!-- 슬라이드 3 -->
+        <div
+          class="fade absolute inset-0"
+          style="
+            background-image: url('../public/slider/slider_3.png');
+            background-size: cover;
+            background-position: center;
+          "
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+          ></div>
+          <div class="absolute left-12 bottom-10 text-white">
+            <h2 class="text-2xl font-bold mb-2">Top 100</h2>
+            <h2 class="text-2xl font-bold mb-2">Trending Items</h2>
+            <p class="text-sm">지금 그의 위시리스트!</p>
+          </div>
+        </div>
+
+        <!-- 슬라이드 4 -->
+        <div
+          class="fade absolute inset-0"
+          style="
+            background-image: url('../public/slider/slider_4.png');
+            background-size: cover;
+            background-position: center;
+          "
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+          ></div>
+          <div class="absolute left-12 bottom-10 text-white">
+            <h2 class="text-2xl font-bold mb-2">지금 가입만 해도</h2>
+            <h2 class="text-2xl font-bold mb-2">풍성한 혜택!</h2>
+            <p class="text-sm">10월 신규회원 한정</p>
+          </div>
+        </div>
+
+        <!-- 슬라이드 5 -->
+        <div
+          class="fade absolute inset-0"
+          style="
+            background-image: url('../public/slider/slider_5.png');
+            background-size: cover;
+            background-position: center;
+          "
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+          ></div>
+          <div class="absolute left-12 bottom-10 text-white">
+            <h2 class="text-2xl font-bold mb-2">
+              핫한 뷰티템도 PREAM에서!
+            </h2>
+            <p class="text-sm">한정판부터 정가 아래 득템까지</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 화살표 버튼 -->
+      <button
+        onclick="prevSlide()"
+        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full shadow-md p-2 hover:bg-gray-100"
+      >
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button
+        onclick="nextSlide()"
+        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full shadow-md p-2 hover:bg-gray-100"
+      >
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <div
+        id="slideIndicator"
+        class="absolute bottom-4 right-6 bg-black/50 text-white text-xs px-3 py-1 rounded-full"
+      >
+        1 / 5
+      </div>
+    </section>
+
+    <!-- 카테고리 -->
+    <section
+      class="max-w-6xl mx-auto mt-10 grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-6 text-center"
+    >
+      <!-- 전체보기 -->
+      <a
+        href="/frontend/pages/category/category.html?category_name=all"
+        class="flex flex-col items-center transition-transform duration-300 hover:scale-110"
+      >
+        <div
+          class="w-24 h-24 bg-white rounded-full shadow-md mb-2 flex items-center justify-center overflow-hidden"
+        >
+          <img
+            src="/frontend/public/top/LOUISVUITTON_top1.jpg"
+            alt="전체보기"
+            class="w-24 h-24 object-contain"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+        <p class="text-xs font-medium">전체보기</p>
+      </a>
+
+      <!-- 브랜드 -->
+      <a
+        href="/frontend/pages/category/category.html?category_name=brand"
+        class="flex flex-col items-center transition-transform duration-300 hover:scale-110"
+      >
+        <div
+          class="w-24 h-24 bg-white shadow-md rounded-full mb-2 flex items-center justify-center overflow-hidden"
+        >
+          <img
+            src="/frontend/public/logos/LOUISVUITTON__logo.png"
+            alt="브랜드"
+            class="w-12 h-12 object-contain"
+          />
+        </div>
+        <p class="text-xs font-medium">브랜드</p>
+      </a>
+
+      <!-- 상의 -->
+      <a
+        href="/frontend/pages/category/category.html?category_name=top"
+        class="flex flex-col items-center transition-transform duration-300 hover:scale-110"
+      >
+        <div
+          class="w-24 h-24 bg-white shadow-md rounded-full mb-2 flex items-center justify-center overflow-hidden"
+        >
+          <img
+            src="/frontend/public/top/LOUISVUITTON_top2.jpg"
+            alt="상의"
+            class="w-24 h-24 object-contain"
+          />
+        </div>
+        <p class="text-xs font-medium">상의</p>
+      </a>
+
+      <!-- 하의 -->
+      <a
+        href="/frontend/pages/category/category.html?category_name=bottoms"
+        class="flex flex-col items-center transition-transform duration-300 hover:scale-110"
+      >
+        <div
+          class="w-24 h-24 bg-white shadow-md rounded-full mb-2 flex items-center justify-center overflow-hidden"
+        >
+          <img
+            src="/frontend/public/bottoms/LOUISVUITTON_bottoms1.jpg"
+            alt="하의"
+            class="w-24 h-24 object-contain"
+          />
+        </div>
+        <p class="text-xs font-medium">하의</p>
+      </a>
+
+      <!-- 가방 -->
+      <a
+        href="/frontend/pages/category/category.html?category_name=bag"
+        class="flex flex-col items-center transition-transform duration-300 hover:scale-110"
+      >
+        <div
+          class="w-24 h-24 bg-white shadow-md rounded-full mb-2 flex items-center justify-center overflow-hidden"
+        >
+          <img
+            src="/frontend/public/bags/LOUISVUITTON_bag1.jpg"
+            alt="가방"
+            class="w-24 h-24 object-contain"
+          />
+        </div>
+        <p class="text-xs font-medium">가방</p>
+      </a>
+
+      <!-- 신발 -->
+      <a
+        href="/frontend/pages/category/category.html?category_name=shoes"
+        class="flex flex-col items-center transition-transform duration-300 hover:scale-110"
+      >
+        <div
+          class="w-24 h-24 bg-white shadow-md rounded-full mb-2 flex items-center justify-center overflow-hidden"
+        >
+          <img
+            src="/frontend/public/shoes/LOUISVUITTON_shoes1.jpg"
+            alt="신발"
+            class="w-24 h-24 object-contain"
+          />
+        </div>
+        <p class="text-xs font-medium">신발</p>
+      </a>
+
+      <!-- 액세서리 -->
+      <a
+        href="/frontend/pages/category/category.html?category_name=accessory"
+        class="flex flex-col items-center transition-transform duration-300 hover:scale-110"
+      >
+        <div
+          class="w-24 h-24 bg-white shadow-md rounded-full mb-2 flex items-center justify-center overflow-hidden"
+        >
+          <img
+            src="/frontend/public/accessories/LOUISVUITTON_accessory1.jpg"
+            alt="액세서리"
+            class="w-24 h-24 object-contain"
+          />
+        </div>
+        <p class="text-xs font-medium">액세서리</p>
+      </a>
+
+      <!-- 뷰티 -->
+      <a
+        href="/frontend/pages/category/category.html?category_name=beauty"
+        class="flex flex-col items-center transition-transform duration-300 hover:scale-110"
+      >
+        <div
+          class="w-24 h-24 bg-white shadow-md rounded-full mb-2 flex items-center justify-center overflow-hidden"
+        >
+          <img
+            src="/frontend/public/beauty/LOUISVUITTON_beauty1.jpg"
+            alt="뷰티"
+            class="w-24 h-24 object-contain"
+          />
+        </div>
+        <p class="text-xs font-medium">뷰티</p>
+      </a>
+    </section>
+
+    <!-- 신상 인기 섹션 (랜덤 상품 자리 추가) -->
+    <section class="max-w-6xl mx-auto mt-16">
+      <h3 class="text-lg font-bold mb-6">지금 가장 주목받는 신상</h3>
+      <div
+        id="trendingGrid"
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5"
+      ></div>
+    </section>
+
+    <!-- 하단 배너 -->
+    <section
+      class="max-w-6xl mx-auto mt-20 bg-gray-100 rounded-lg py-8 flex flex-col sm:flex-row justify-between items-center px-8"
+    >
+      <div>
+        <h4 class="text-lg font-bold mb-1">최대 3만원 즉시할인</h4>
+        <p class="text-sm text-gray-600">카카오페이&BC카드 결제 시</p>
+      </div>
+      <div class="flex items-center space-x-2 mt-4 sm:mt-0">
+        <img
+          src="/frontend/public/kakaopay.png"
+          alt="kakaopay"
+          class="h-24"
+        />
+      </div>
+    </section>
+
+    <footer class="text-center py-8 text-sm text-gray-400">
+      ⓒ 2025 PREAM. All Rights Reserved.
+    </footer>
+  </body>
+</html>

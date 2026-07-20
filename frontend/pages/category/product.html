@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>상품 상세</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 공통 CSS -->
+  <link rel="stylesheet" href="/frontend/dist/style.css" />
+  <!-- lucide 아이콘 CDN -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <!-- 네비게이션바 생성 스크립트 -->
+  <script src="/frontend/js/navigation.js" defer></script>
+
+  <style>
+    .cap-grad { background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+  </style>
+  
+</head>
+<body class="bg-white text-slate-900">
+  <!-- 네비게이션바 -->
+  <div id="navigation" data-src="/frontend/components/navigation.html"></div>
+
+  <!-- 컨테이너 -->
+  <main id="content" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- 로딩 -->
+    <div id="loading" class="py-16 text-center text-slate-500">불러오는 중…</div>
+
+    <!-- 에러 -->
+    <div id="error" class="hidden py-16 text-center text-red-600"></div>
+
+    <!-- 상세 -->
+    <section id="product" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- 갤러리 -->
+      <div id="gallery" class="w-full">
+        <div class="relative aspect-[3/4] bg-neutral-100 rounded-lg overflow-hidden">
+          <img id="mainImage" alt="상품 이미지" class="absolute inset-0 w-full h-full object-contain" />
+        </div>
+        <div id="thumbs" class="mt-4 grid grid-cols-4 gap-2"></div>
+      </div>
+
+      <!-- 정보 -->
+      <div class="flex flex-col">
+         <!-- 상품 이름 + 위시리스트 하트 -->
+        <div class="flex items-center justify-between gap-3">
+          <h1 id="name" class="text-2xl font-semibold tracking-tight flex-1"></h1>
+
+          <!-- 관심목록 토글 버튼 -->
+          <button
+            id="wishToggle"
+            type="button"
+            class="p-2 -mr-2 text-red-500 hover:opacity-80 transition"
+            aria-label="관심상품 추가"
+            aria-pressed="false"
+          >
+            <!-- lucide가 이 i를 svg로 교체 -->
+            <i data-lucide="heart" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <p id="price" class="mt-2 text-xl text-slate-800"></p>
+        <p id="sku" class="mt-1 text-sm text-slate-500"></p>
+
+        <div id="tags" class="mt-3 flex gap-2 flex-wrap"></div>
+
+        <div class="mt-6 prose max-w-none">
+          <h2 class="text-lg font-semibold">상품 설명</h2>
+          <p id="description" class="mt-2 text-slate-700"></p>
+        </div>
+
+        <!-- 상품 개수 -->
+        <div class="mt-8 flex items-center justify-between gap-4">
+          <div class="flex items-center border border-slate-300 rounded-xl bg-white">
+            <button id="quantity-minus" type="button" class="px-4 py-3 text-lg font-semibold text-slate-600 hover:bg-slate-50 rounded-l-xl transition-colors duration-200" aria-label="수량 감소">
+              -
+            </button>
+            <span id="quantity-display" class="px-5 font-bold text-slate-800">1</span>
+            <button id="quantity-plus" type="button" class="px-4 py-3 text-lg font-semibold text-slate-600 hover:bg-slate-50 rounded-r-xl transition-colors duration-200" aria-label="수량 증가">
+              +
+            </button>
+          </div>
+
+          <div class="flex gap-3">
+            <button id="addToCart" class="px-5 py-3 rounded-xl bg-black text-white hover:opacity-90">
+              장바구니 담기
+            </button>
+            <button id="buyNow" class="px-5 py-3 rounded-xl border border-slate-300 hover:bg-slate-50">
+              바로 구매
+            </button>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 공통 -->
+  <script src="/frontend/js/mockData.js" defer></script>
+
+  <!-- 분리된 스크립트 -->
+  <script src="/frontend/js/category/product.js" defer></script>
+</body>
+</html>

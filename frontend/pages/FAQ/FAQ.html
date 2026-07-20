@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>자주 묻는 질문 | PREAM</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- lucide 아이콘 -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+
+  <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="../../dist/style.css" />
+
+  <!-- 네비게이션 -->
+  <script src="/frontend/js/navigation.js" defer></script>
+</head>
+
+<body class="min-h-screen bg-white text-gray-900">
+
+  <div id="navigation" data-src="/frontend/components/navigation.html"></div>
+
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-center mb-8">자주 묻는 질문 (FAQ)</h1>
+    <div class="border-b-2 border-gray-400 mt-6"></div>
+
+    <!-- 여기에 JS가 FAQ를 렌더링 -->
+    <section id="faq-list" class="pt-6 space-y-4"></section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-gray-500 text-sm py-6 border-t">
+    ⓒ 2025 PREAM. All rights reserved.
+  </footer>
+
+  <script src="../../js/FAQ.js" defer></script>
+</body>
+</html>

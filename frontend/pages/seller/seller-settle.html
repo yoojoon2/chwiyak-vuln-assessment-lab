@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판매 정산 계좌</title>
+    <link rel="stylesheet" href="../../dist/style2.css">
+</head>
+<body>
+    <div class="settlement-container">
+        <div class="settlement-header">
+            <button class="settlement-back-button" onclick="goBack()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <h1 class="settlement-header-title">판매 정산 계좌</h1>
+        </div>
+
+        <div class="settlement-content">
+            <div class="settlement-form-group">
+                <label class="settlement-form-label" for="bank-select">은행명</label>
+                <select class="settlement-form-select" id="bank-select">
+                    <option value="">선택하세요</option>
+                    <option value="KB국민은행">KB국민은행</option>
+                    <option value="신한은행">신한은행</option>
+                    <option value="우리은행">우리은행</option>
+                    <option value="하나은행">하나은행</option>
+                    <option value="NH농협은행">NH농협은행</option>
+                    <option value="IBK기업은행">IBK기업은행</option>
+                    <option value="카카오뱅크">카카오뱅크</option>
+                    <option value="토스뱅크">토스뱅크</option>
+                </select>
+            </div>
+
+            <div class="settlement-form-group">
+                <label class="settlement-form-label" for="account-number">계좌번호</label>
+                <input 
+                    type="text" 
+                    class="settlement-form-input" 
+                    id="account-number" 
+                    placeholder="- 없이 입력하세요"
+                    inputmode="numeric"
+                >
+            </div>
+
+            <div class="settlement-form-group">
+                <label class="settlement-form-label" for="account-holder">예금주</label>
+                <input 
+                    type="text" 
+                    class="settlement-form-input" 
+                    id="account-holder" 
+                    placeholder="예금주명을 정확히 입력하세요."
+                >
+            </div>
+        </div>
+
+        <div class="settlement-footer">
+            <button class="settlement-submit-button" id="save-btn" disabled onclick="saveAccount()">저장하기</button>
+        </div>
+    </div>
+
+    <script src="../../js/seller/seller-settle.js"></script>
+</body>
+</html>

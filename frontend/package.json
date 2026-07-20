@@ -1,0 +1,14 @@
+{
+  "name": "luxury-market-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i ./dist/style.css -o ./dist/style.css --minify",
+    "dev": "tailwindcss -i ./dist/style.css -o ./dist/style.css --watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.4.0"
+  }
+}

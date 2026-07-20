@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>상품 관리 | PREAM</title>
+  <link rel="stylesheet" href="../../dist/style2.css" />
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <!-- Navigation Component Placeholder -->
+  <div id="navigation" data-src="/frontend/components/navigation.html"></div>
+
+  <!-- 헤더 -->
+  <header class="bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4 py-4 max-w-6xl">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <button onclick="goBack()" class="text-gray-600 hover:text-gray-900">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <h1 class="text-2xl font-bold">리뷰 관리</h1>
+        </div>
+        <div class="text-sm text-gray-600">
+          총 <span class="font-bold text-gray-900" id="total-reviews">28</span>개의 리뷰
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-6 max-w-6xl">
+    <!-- 필터 및 정렬 -->
+    <section class="bg-white rounded-lg shadow mb-6 p-4">
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="flex gap-2 w-full md:w-auto">
+          <button class="review-filter-btn active" data-filter="all">
+            전체 <span class="count">0</span>
+          </button>
+          <button class="review-filter-btn" data-filter="5">
+            ⭐ 5점 <span class="count">0</span>
+          </button>
+          <button class="review-filter-btn" data-filter="4">
+            ⭐ 4점 <span class="count">0</span>
+          </button>
+          <button class="review-filter-btn" data-filter="3">
+            ⭐ 3점 <span class="count">0</span>
+          </button>
+          <button class="review-filter-btn" data-filter="2">
+            ⭐ 2점 <span class="count">0</span>
+          </button>
+          <button class="review-filter-btn" data-filter="1">
+            ⭐ 1점 <span class="count">0</span>
+          </button>
+        </div>
+        <select id="sort-select" class="px-4 py-2 border border-gray-300 rounded-lg text-sm">
+          <option value="latest">최신순</option>
+          <option value="oldest">오래된순</option>
+          <option value="rating-high">평점 높은순</option>
+          <option value="rating-low">평점 낮은순</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- 평점 통계 -->
+    <section class="bg-white rounded-lg shadow mb-6 p-6">
+      <h3 class="text-lg font-bold mb-4">평점 통계</h3>
+      <div class="flex items-center gap-6">
+        <div class="text-center">
+          <p id="review-average-score" class="text-4xl font-bold mb-1">0.0</p>
+          <div id="review-average-stars" class="text-yellow-400 text-lg mb-1">★★★★★</div>
+          <p class="text-xs text-gray-500">평균 평점</p>
+        </div>
+        <div class="flex-1">
+          <div class="space-y-2" id="review-rating-bars">
+            <!-- 동적 렌더링 -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 리뷰 목록 -->
+    <section class="space-y-4" id="review-list">
+      <!-- 동적 렌더링 -->
+    </section>
+
+    <!-- 더보기 버튼 -->
+    <div class="text-center mt-8 mb-6">
+      <button onclick="loadMoreReviews()" class="px-6 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition">
+        더보기
+      </button>
+    </div>
+  </main>
+
+  <!-- 답변 작성 모달 -->
+  <div id="reply-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">답변 작성</h3>
+        <span class="modal-close" onclick="closeReplyModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <textarea id="reply-text" class="w-full p-4 border border-gray-300 rounded-lg resize-none" rows="5" placeholder="고객에게 정중하고 친절한 답변을 작성해주세요."></textarea>
+        <p class="text-xs text-gray-500 mt-2">
+          💡 Tip: 긍정적인 리뷰에는 감사 인사를, 부정적인 리뷰에는 개선 의지를 표현하세요.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button onclick="submitReply()" class="modal-submit bg-black hover:bg-gray-800 text-white">
+          답변 등록
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/seller/review.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>공지사항 상세 | PREAM</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons & 네비게이션 -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="/frontend/js/navigation.js" defer></script>
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="../../dist/style.css" />
+
+    <style>
+      #notice-content {
+        min-height: 50vh;
+        padding: 2rem 2.5rem;
+        background-color: #fafafa;
+        border-radius: 12px;
+        overflow-y: auto;
+        line-height: 1.8;
+        scrollbar-width: thin;
+        scrollbar-color: #d1d5db transparent;
+      }
+      #notice-content::-webkit-scrollbar {
+        width: 6px;
+      }
+      #notice-content::-webkit-scrollbar-thumb {
+        background-color: #d1d5db;
+        border-radius: 3px;
+      }
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        margin-top: 2rem;
+        font-weight: 600;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: white;
+        transition: all 0.2s ease;
+      }
+      .back-btn:hover {
+        background-color: #f3f3f3;
+        border-color: #aaa;
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen bg-gray-50 text-gray-900 flex flex-col">
+  <!-- 상단 네비게이션 -->
+  <div id="navigation" data-src="../../components/navigation.html"></div>
+
+  <!-- ✅ 세로/가로 중앙정렬 -->
+  <main class="flex-1 flex justify-center items-start sm:items-center px-4 sm:px-10 py-12">
+    <article class="bg-white shadow-md rounded-2xl px-8 py-10 max-w-3xl w-full">
+      <!-- 제목 -->
+      <h1 id="notice-title" class="text-3xl font-bold text-center mb-4">제목 로딩 중...</h1>
+
+      <!-- 작성자 / 등록일 -->
+      <div class="flex flex-col sm:flex-row sm:justify-between text-sm text-gray-500 text-center sm:text-left mb-6">
+        <span id="notice-author">작성자: 관리자</span>
+        <span id="notice-date">등록일: -</span>
+      </div>
+
+      <div class="border-b border-gray-300 mb-8"></div>
+
+      <!-- 본문 -->
+      <div id="notice-content" class="text-gray-700 whitespace-pre-line leading-relaxed bg-gray-50 rounded-xl p-6">
+        불러오는 중...
+      </div>
+
+      <!-- 뒤로가기 -->
+      <div class="flex justify-center">
+        <button onclick="history.back()" class="back-btn mt-8">
+          <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+          목록으로 돌아가기
+        </button>
+      </div>
+    </article>
+  </main>
+
+  <footer class="text-center text-gray-500 text-sm py-6 border-t">
+    ⓒ 2025 PREAM. All rights reserved.
+  </footer>
+  <script src="/frontend/js/notice/notice_detail.js" defer></script>
+</body>
+
+</html>

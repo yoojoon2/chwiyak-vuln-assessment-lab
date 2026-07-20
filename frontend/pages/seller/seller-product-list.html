@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>상품 관리 | PREAM</title>
+
+  <!-- Tailwind & Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+
+  <!-- 공통 CSS -->
+  <link rel="stylesheet" href="/frontend/dist/style.css" />
+  
+  <!-- mock 데이터 (먼저 로드) -->
+  <script src="/frontend/js/mockData.js" defer></script>
+
+  <!-- 네비게이션바 생성 스크립트 -->
+  <script src="/frontend/js/navigation.js" defer></script>
+
+  <!-- 관리 전용 JS -->
+  <script src="/frontend/js/seller/seller-product-list.js" defer></script>
+</head>
+<body class="bg-white text-slate-800">
+  <!-- 네비게이션 -->
+  <div id="navigation" data-src="/frontend/components/navigation.html"></div>
+
+  <!-- 🧩 상품 수정 모달 -->
+  <div
+    id="editModal"
+    class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm 
+          flex items-center justify-center z-[9999] 
+          opacity-0 transition-opacity duration-300"
+  >
+    <div
+      id="modalBox"
+      class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-lg p-6 relative 
+            transform scale-95 transition-transform duration-300"
+    >
+      <h2 class="text-lg font-bold mb-4">상품 수정</h2>
+
+      <form id="editForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">상품 이름</label>
+          <input
+            type="text"
+            id="editName"
+            class="w-full border border-gray-300 rounded p-2 focus:ring focus:ring-sky-200 outline-none"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">가격</label>
+          <input
+            type="number"
+            id="editPrice"
+            class="w-full border border-gray-300 rounded p-2 focus:ring focus:ring-sky-200 outline-none"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">설명</label>
+          <textarea
+            id="editDesc"
+            rows="3"
+            class="w-full border border-gray-300 rounded p-2 focus:ring focus:ring-sky-200 outline-none"
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">이미지</label>
+          <input
+            type="file"
+            id="editImage"
+            accept="image/*"
+            class="block w-full text-sm text-gray-600"
+          />
+          <div class="mt-2">
+            <img
+              id="imagePreview"
+              src=""
+              alt="미리보기"
+              class="w-32 h-32 object-cover border rounded hidden"
+            />
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 mt-6">
+          <button
+            type="button"
+            id="cancelEdit"
+            class="px-3 py-1.5 rounded-md bg-gray-200 hover:bg-gray-300 transition"
+          >
+            취소
+          </button>
+          <button
+            type="submit"
+            class="px-3 py-1.5 rounded-md bg-sky-600 text-white hover:bg-sky-700 transition"
+          >
+            저장
+          </button>
+        </div>
+      </form>
+
+      <button
+        id="closeModal"
+        class="absolute top-3 right-3 text-gray-500 hover:text-black text-2xl leading-none"
+      >
+        &times;
+      </button>
+    </div>
+  </div>
+
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+    <!-- 제목 + 중앙 수평선 -->
+    <h1 class="text-[28px] font-extrabold tracking-tight text-center">
+      상품 관리
+    </h1>
+    <hr class="w-24 mx-auto mt-3 mb-6 border-slate-400"/>
+
+    <!-- 상품 리스트 헤더 -->
+    <div class="grid grid-cols-[1fr_96px_120px_2.75fr_auto] gap-4 items-center px-2 sm:px-3 py-2
+                text-sm font-semibold text-slate-700">
+      <div class="text-center">상품 이름</div>
+
+      <!-- 사진 -->
+      <div class="flex items-center justify-center">
+        <span class="inline-block w-24 text-center">사진</span>
+      </div>
+
+      <!-- 가격 -->
+      <div class="flex items-center justify-center">
+        <span class="inline-block w-[120px] text-center">가격</span>
+      </div>
+
+      <div class="flex items-center justify-start">상품 설명</div>
+      <div></div>
+    </div>
+    <hr class="mb-2 border-slate-200"/>
+
+    <!-- 리스트 -->
+    <div id="productList"></div>
+
+    <!-- 비어있을 때 -->
+    <p id="emptyState" class="hidden mt-10 text-center text-slate-500">
+      판매하고 있는 상품이 없습니다.
+    </p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>문의 등록 | PREAM</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="/frontend/js/navigation.js" defer></script>
+  <link rel="stylesheet" href="../../dist/style.css" />
+</head>
+
+<body class="min-h-screen bg-white text-gray-900 flex flex-col">
+  <div id="navigation" data-src="../../components/navigation.html"></div>
+
+  <main class="flex-1 max-w-3xl mx-auto w-full px-6 py-12">
+    <h1 class="text-3xl font-bold text-center mb-8">문의 등록</h1>
+    <div class="border-b-2 border-gray-400 mb-8"></div>
+
+    <form id="support-form" class="bg-white rounded-2xl shadow-md p-8 space-y-6">
+      <div>
+        <label for="title" class="block text-sm font-semibold mb-1">제목</label>
+        <input
+          id="title"
+          type="text"
+          placeholder="제목을 입력하세요"
+          class="w-full border border-gray-300 rounded-md py-2 px-3 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="content" class="block text-sm font-semibold mb-1">내용</label>
+        <textarea
+          id="content"
+          rows="7"
+          placeholder="문의하실 내용을 입력하세요"
+          class="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+          required
+        ></textarea>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <input type="checkbox" id="is_private" class="w-4 h-4 text-blue-500 border-gray-300 rounded" />
+        <label for="is_private" class="text-sm text-gray-700">비밀글로 설정</label>
+      </div>
+
+      <div class="flex justify-end space-x-3 pt-4">
+        <a href="./support.html" class="px-5 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100">취소</a>
+        <button
+          type="submit"
+          class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-sm transition"
+        >등록하기</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="text-center text-gray-500 text-sm py-6 border-t">
+    ⓒ 2025 PREAM. All rights reserved.
+  </footer>
+
+  <script src="/frontend/js/support/support.js" defer></script>
+</body>
+</html>

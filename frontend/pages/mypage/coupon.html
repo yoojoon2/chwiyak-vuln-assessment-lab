@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>명품 거래 - 쿠폰</title>
+  <link rel="stylesheet" href="../../dist/style2.css" />
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <!-- Navigation Component Placeholder -->
+  <div id="navigation" data-src="../components/navigation.html"></div>
+
+  <!-- 헤더 -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
+    <div class="container mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+      <button onclick="goBack()" class="text-2xl text-gray-700 hover:text-gray-900">
+        ←
+      </button>
+      <h1 class="text-lg font-semibold">쿠폰</h1>
+      <div class="w-6"></div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-6 max-w-6xl">
+    
+    <!-- 쿠폰 코드 등록 -->
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <button onclick="document.getElementById('coupon-modal').style.display='flex'" class="w-full py-5 text-center text-gray-700 font-medium hover:bg-gray-50 transition">
+        + 쿠폰 코드 등록하기
+      </button>
+    </section>
+
+    <!-- 쿠폰 리스트 -->
+    <section id="coupon-list">
+      <!-- 쿠폰 1 -->
+      <div class="coupon-card">
+        <div class="coupon-discount">10%</div>
+        <div class="coupon-name">[KREAM House] 25FW 신상 뉴드롭 브랜드 10%</div>
+        <span class="coupon-badge">브랜드</span>
+        <div class="coupon-condition">• 브랜드배송 선택 시 사용가능</div>
+        <div class="coupon-condition">• 일부 상품 제외</div>
+        <div class="coupon-expire">오늘 종료 25/10/22 11:00:00 까지</div>
+        <button class="coupon-download mt-4">사용 가능 상품</button>
+      </div>
+
+      <!-- 쿠폰 2 -->
+      <div class="coupon-card">
+        <div class="coupon-discount">15%</div>
+        <div class="coupon-name">[명품관] VIP 회원 특별 할인 쿠폰</div>
+        <span class="coupon-badge">명품</span>
+        <div class="coupon-condition">• 100만원 이상 구매 시</div>
+        <div class="coupon-condition">• 중복 사용 불가</div>
+        <div class="coupon-expire">오늘 종료 25/10/22 11:00:00 까지</div>
+        <button class="coupon-download mt-4">사용 가능 상품</button>
+      </div>
+
+      <!-- 쿠폰 3 -->
+      <div class="coupon-card">
+        <div class="coupon-discount">5,000원</div>
+        <div class="coupon-name">신규 회원 웰컴 쿠폰</div>
+        <span class="coupon-badge">전체</span>
+        <div class="coupon-condition">• 첫 구매 시 사용 가능</div>
+        <div class="coupon-condition">• 최소 구매금액 50,000원</div>
+        <div class="coupon-expire">오늘 종료 25/10/25 23:59:59 까지</div>
+        <button class="coupon-download mt-4">사용 가능 상품</button>
+      </div>
+
+      <!-- 쿠폰 4 -->
+      <div class="coupon-card">
+        <div class="coupon-discount">20%</div>
+        <div class="coupon-name">시즌 오프 특가 쿠폰</div>
+        <span class="coupon-badge">시즌오프</span>
+        <div class="coupon-condition">• 시즌오프 카테고리 한정</div>
+        <div class="coupon-condition">• 일부 브랜드 제외</div>
+        <div class="coupon-expire">오늘 종료 25/10/30 23:59:59 까지</div>
+        <button class="coupon-download mt-4">사용 가능 상품</button>
+      </div>
+
+      <!-- 쿠폰 5 -->
+      <div class="coupon-card">
+        <div class="coupon-discount">30,000원</div>
+        <div class="coupon-name">생일 축하 특별 쿠폰</div>
+        <span class="coupon-badge">생일</span>
+        <div class="coupon-condition">• 생일 당월 사용 가능</div>
+        <div class="coupon-condition">• 최소 구매금액 200,000원</div>
+        <div class="coupon-expire">오늘 종료 25/10/31 23:59:59 까지</div>
+        <button class="coupon-download mt-4">사용 가능 상품</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 쿠폰 등록 모달 -->
+  <div id="coupon-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">쿠폰 코드 등록</h2>
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <label class="block text-sm font-semibold mb-2">코드 등록하기</label>
+        <input type="text" id="coupon-code-input" class="modal-input" placeholder="코드를 입력하세요" />
+        <div class="modal-notice">
+          <p>• 유효기간이 지난 쿠폰 코드는 등록이 불가합니다.</p>
+          <p>• 쿠폰에 따라 발급 수량 및 계정당 사용 횟수가 제한될 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-submit" onclick="submitCoupon()">쿠폰 발급 받기</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/mypage/coupon.js"></script>
+</body>
+</html>

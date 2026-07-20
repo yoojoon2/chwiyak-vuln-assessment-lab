@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>문의 상세 | PREAM</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="/frontend/js/navigation.js" defer></script>
+  <link rel="stylesheet" href="../../dist/style.css" />
+</head>
+
+<body class="min-h-screen bg-gray-50 text-gray-900 flex flex-col">
+  <div id="navigation" data-src="../../components/navigation.html"></div>
+
+  <main class="flex-1 flex justify-center items-start px-4 sm:px-10 py-12">
+    <article class="bg-white shadow-md rounded-2xl px-8 py-10 max-w-3xl w-full relative">
+      <!-- 뒤로가기 버튼 (왼쪽 상단) -->
+      <div class="absolute top-6 left-6">
+        <a
+          href="./support.html"
+          class="inline-flex items-center px-4 py-2  text-gray-700 hover:bg-gray-100 transition text-sm"
+        >
+          <i data-lucide='arrow-left' class="w-4 h-4 mr-2"></i>
+        </a>
+      </div>
+
+      <h1 id="support-title" class="text-3xl font-bold text-center mb-4 mt-8">
+        제목 로딩 중...
+      </h1>
+
+      <div class="flex flex-col sm:flex-row sm:justify-between text-sm text-gray-500 mb-6 text-center sm:text-left">
+        <span id="support-author">작성자: -</span>
+        <span id="support-date">등록일: -</span>
+      </div>
+
+      <div class="border-b border-gray-300 mb-8"></div>
+
+      <div
+        id="support-content"
+        class="text-gray-700 whitespace-pre-line leading-relaxed bg-gray-50 rounded-xl p-6"
+      >
+        불러오는 중...
+      </div>
+
+      <div id="support-answer" class="hidden mt-8 border-t border-gray-300 pt-4"></div>
+
+      <div id="support-actions" class="flex justify-center mt-8 gap-3"></div>
+    </article>
+  </main>
+
+  <footer class="text-center text-gray-500 text-sm py-6 border-t">
+    ⓒ 2025 PREAM. All rights reserved.
+  </footer>
+
+  <script src="/frontend/js/support/support.js" defer></script>
+</body>
+</html>

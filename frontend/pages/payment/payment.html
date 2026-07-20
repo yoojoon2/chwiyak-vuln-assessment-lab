@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>명품 거래 - 배송/결제</title>
+  <link rel="stylesheet" href="../../dist/style2.css" />
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <header class="bg-white border-b border-gray-200 p-4">
+    <div class="container mx-auto relative max-w-6xl">
+      <button class="back-btn text-2xl text-gray-700 hover:text-gray-900">
+        ←
+      </button>
+      <h1 class="text-xl font-bold text-center">배송/결제</h1>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-6 max-w-6xl">
+    
+    <!-- 배송 주소 섹션 -->
+    <section class="bg-white rounded-lg shadow-sm p-6 mb-4">
+      <h3 class="font-bold text-lg mb-4">배송 주소</h3>
+      
+      <div class="space-y-3 text-sm mb-4">
+        <div class="flex">
+          <span class="text-gray-500 w-20">받는 분</span>
+          <span class="text-gray-900">홍길동</span>
+        </div>
+        <div class="flex">
+          <span class="text-gray-500 w-20">연락처</span>
+          <span class="text-gray-900">010-1234-5678</span>
+        </div>
+        <div>
+          <span class="text-gray-500 block mb-2">주소</span>
+          <div class="space-y-2">
+            <div class="flex gap-2">
+              <input type="text" id="zipcode" placeholder="우편번호" readonly class="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-sm bg-white" />
+              <button id="zipcode-search-btn" class="px-6 py-3 bg-gray-900 text-white rounded-lg text-sm hover:bg-gray-700 transition whitespace-nowrap">
+                우편번호 검색
+              </button>
+            </div>
+            <input type="text" id="address1" placeholder="서울특별시 강남구 테헤란로 123, 456호" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm bg-white" />
+            <input type="text" id="address2" placeholder="상세 주소" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm" />
+          </div>
+        </div>
+      </div>
+      
+      <button id="delivery-msg-btn" class="w-full py-3 bg-white border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50 transition">
+        배송 메세지
+      </button>
+    </section>
+
+    <!-- 주문 상품 및 과표 섹션 -->
+    <section class="bg-white rounded-lg shadow-sm p-6 mb-4">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-lg">주문 상품 및 과표</h3>
+        <button class="text-sm text-gray-500">이 1건</button>
+      </div>
+
+      <!-- ✅ 상품 정보 컨테이너 (JS가 렌더링) -->
+      <div id="product-info-container" class="mb-6 pl-4">
+        <!-- JS가 여기에 상품 목록 렌더링 -->
+      </div>
+
+      <!-- 할인 쿠폰 -->
+      <div class="border-t border-gray-200 pt-4 mb-4 pl-4">
+        <h4 class="text-sm font-medium mb-3">할인쿠폰</h4>
+        <div class="flex items-center gap-2">
+          <div class="flex-1 px-4 py-3 border border-gray-300 rounded-full text-sm text-gray-500">
+            <span id="selected-coupon-text">사용할 쿠폰을 선택해주세요</span>
+          </div>
+          <button id="coupon-open-btn" class="px-6 py-3 rounded-full text-sm text-white transition whitespace-nowrap" style="background-color: #D3D3D3;">쿠폰 선택</button>
+        </div>
+      </div>
+
+      <!-- 포인트 -->
+      <div class="mb-4 pl-4">
+        <h4 class="text-sm font-medium mb-3">포인트</h4>
+        <div class="flex items-center gap-2 mb-2">
+          <input type="text" placeholder="포인트" class="flex-1 px-4 py-3 border border-gray-300 rounded-full text-sm" />
+          <button id="max-point-btn" class="px-6 py-3 rounded-full text-sm text-white transition whitespace-nowrap" style="background-color: #D3D3D3;">최대 사용</button>
+        </div>
+        <p class="text-xs text-gray-500">보유 포인트 0P</p>
+      </div>
+
+      <!-- 결제금액 -->
+      <div class="border-t border-gray-200 pt-4 flex justify-between font-bold text-base pl-4">
+        <span>결제금액</span>
+        <span>0원</span>
+      </div>
+    </section>
+
+    <!-- 결제 방법 섹션 -->
+    <section class="bg-white rounded-lg shadow-sm p-6 mb-4">
+      <h3 class="font-bold text-lg mb-4">결제 방법</h3>
+      <div class="space-y-3 pl-4">
+        <label class="flex items-center cursor-pointer">
+          <input type="radio" name="payment-method" value="card" class="w-4 h-4 mr-3" checked />
+          <span class="text-sm">카드 결제</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- 최종 주문정보 섹션 -->
+    <section class="bg-white rounded-lg shadow-sm p-6 mb-4">
+      <h3 class="font-bold text-lg mb-4">최종 주문정보</h3>
+      <div class="space-y-2 text-sm mb-4 pl-4">
+        <div class="flex justify-between">
+          <span class="text-gray-600">상품가</span>
+          <span class="font-medium text-gray-900">0원</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-600">배송비</span>
+          <span class="font-medium text-gray-900">5,000원</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-600">할인</span>
+          <span class="font-medium text-gray-900">-</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-600">포인트</span>
+          <span class="font-medium text-gray-900">-</span>
+        </div>
+      </div>
+      <div class="border-t border-gray-200 pt-4 flex justify-between font-bold text-lg pl-4">
+        <span>이 결제금액</span>
+        <span>5,000원</span>
+      </div>
+    </section>
+
+    <!-- 결제하기 버튼 -->
+    <button id="payment-btn" class="w-full bg-red-500 text-white py-4 rounded-lg text-lg font-bold hover:bg-red-600 transition shadow-md">
+      5,000원 결제하기
+    </button>
+
+  </main>
+
+  <!-- ✅ 쿠폰 선택 모달 (JS가 렌더링) -->
+  <div id="coupon-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg w-full max-w-md mx-4 max-h-[80vh] overflow-hidden flex flex-col">
+      <div class="border-b border-gray-200 p-4 flex items-center justify-between flex-shrink-0">
+        <button id="coupon-modal-back-btn" class="text-2xl">←</button>
+        <h2 class="text-lg font-bold">할인쿠폰</h2>
+        <div class="w-6"></div>
+      </div>
+      
+      <!-- ✅ JS가 여기에 쿠폰 목록 렌더링 -->
+      <div class="p-6 overflow-y-auto flex-1">
+        <div class="space-y-3">
+          <p class="text-center text-gray-500 py-8">쿠폰을 불러오는 중...</p>
+        </div>
+      </div>
+      
+      <div class="p-4 border-t border-gray-200 flex-shrink-0">
+        <button id="coupon-apply-btn" class="w-full bg-gray-900 text-white py-3 rounded-lg font-bold hover:bg-gray-700 transition">
+          쿠폰 선택
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 배송 메시지 모달 -->
+  <div id="delivery-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg w-full max-w-md mx-4">
+      <div class="border-b border-gray-200 p-4 flex items-center justify-between">
+        <button id="modal-back-btn" class="text-2xl">←</button>
+        <h2 class="text-lg font-bold">배송 요청사항</h2>
+        <div class="w-6"></div>
+      </div>
+      
+      <div class="p-6">
+        <div class="space-y-4">
+          <label class="flex items-center cursor-pointer p-3 hover:bg-gray-50 rounded">
+            <input type="radio" name="delivery-request" value="default" class="w-5 h-5 mr-3" checked />
+            <span class="text-sm">요청사항 없음</span>
+          </label>
+          
+          <label class="flex items-center cursor-pointer p-3 hover:bg-gray-50 rounded">
+            <input type="radio" name="delivery-request" value="door" class="w-5 h-5 mr-3" />
+            <span class="text-sm">문 앞에 놓아주세요</span>
+          </label>
+          
+          <label class="flex items-center cursor-pointer p-3 hover:bg-gray-50 rounded">
+            <input type="radio" name="delivery-request" value="security" class="w-5 h-5 mr-3" />
+            <span class="text-sm">경비실에 맡겨 주세요</span>
+          </label>
+          
+          <label class="flex items-center cursor-pointer p-3 hover:bg-gray-50 rounded">
+            <input type="radio" name="delivery-request" value="call" class="w-5 h-5 mr-3" />
+            <span class="text-sm">파손 위험 상품입니다. 배송 시 주의해주세요</span>
+          </label>
+          
+          <label class="flex items-center cursor-pointer p-3 hover:bg-gray-50 rounded">
+            <input type="radio" name="delivery-request" value="custom" class="w-5 h-5 mr-3" />
+            <span class="text-sm">직접 입력</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="p-4">
+        <button id="modal-apply-btn" class="w-full bg-gray-900 text-white py-3 rounded-lg font-bold hover:bg-gray-700 transition">
+          적용하기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/payment.js"></script>
+</body>
+</html>

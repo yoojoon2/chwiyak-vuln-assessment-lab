@@ -1,0 +1,81 @@
+<!--/frontend/pages/login&signup/admin_login.html-->
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 로그인 | PREAM</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 관리자 JS -->
+    <script src="/frontend/js/admin/admin_login.js" defer></script>
+  </head>
+
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div
+      class="bg-white p-8 rounded-xl shadow-md w-full max-w-sm text-gray-800"
+    >
+      <!-- 로고/타이틀 -->
+      <h1 class="text-2xl font-bold text-center mb-6">관리자 로그인</h1>
+
+      <!-- 로그인 폼 -->
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label
+            for="username"
+            class="block text-sm font-medium text-gray-700 mb-1"
+            >아이디</label
+          >
+          <input
+            id="username"
+            type="text"
+            required
+            class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-400"
+            placeholder="admin"
+          />
+        </div>
+
+        <div>
+          <label
+            for="password"
+            class="block text-sm font-medium text-gray-700 mb-1"
+            >비밀번호</label
+          >
+          <input
+            id="password"
+            type="password"
+            required
+            class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-400"
+            placeholder="********"
+          />
+        </div>
+
+        <!-- 로그인 버튼 -->
+        <button
+          type="submit"
+          class="w-full bg-black text-white rounded-md py-2 mt-4 hover:opacity-90 active:scale-[.98] transition-all"
+        >
+          로그인
+        </button>
+      </form>
+
+      <!-- 에러 메시지 -->
+      <p
+        id="error-msg"
+        class="text-sm text-red-600 mt-3 hidden text-center"
+      ></p>
+
+      <!-- 돌아가기 -->
+      <div class="text-center mt-6">
+        <a
+          href="/frontend/pages/login&signup/login.html"
+          class="text-sm text-gray-500 hover:text-gray-800 transition-colors"
+        >
+          ← 일반 로그인으로 돌아가기
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

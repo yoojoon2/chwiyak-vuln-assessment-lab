@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>회원정보 수정 | PREAM</title>
+  <link rel="stylesheet" href="../../dist/style2.css" />
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <!-- Navigation Component Placeholder -->
+  <div id="navigation" data-src="../components/navigation.html"></div>
+
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
+    <div class="container mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+      <button onclick="goBack()" class="text-2xl text-gray-700 hover:text-gray-900">
+        ←
+      </button>
+      <h1 class="text-lg font-semibold">프로필 관리</h1>
+      <div class="w-6"></div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-6 max-w-2xl">
+    
+    <!-- 기본 정보 -->
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <h3 class="text-lg font-semibold mb-4">기본 정보</h3>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">이름</label>
+          <div class="flex gap-2">
+            <input type="text" id="buyer-name-input" value="구매자명" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" />
+            <button onclick="changeBuyerName()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-sm whitespace-nowrap">
+              변경
+            </button>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">아이디</label>
+          <div class="flex gap-2">
+            <input type="text" id="username-input" value="buyer1234" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" />
+            <button onclick="changeUsername()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-sm whitespace-nowrap">
+              변경
+            </button>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">이메일</label>
+          <div class="flex gap-2">
+            <input type="email" id="email-input" value="buyer****@email.com" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" />
+            <button onclick="changeEmail()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-sm whitespace-nowrap">
+              변경
+            </button>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">연락처</label>
+          <div class="flex gap-2">
+            <input type="tel" id="contact-input" placeholder="010-0000-0000" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" />
+            <button onclick="changeContact()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-sm whitespace-nowrap">
+              변경
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 비밀번호 변경 -->
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-semibold">비밀번호</h3>
+        </div>
+        <button onclick="changePassword()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-sm whitespace-nowrap">
+          비밀번호 변경
+        </button>
+      </div>
+    </section>
+
+    <!-- 계정 탈퇴 -->
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-semibold mb-1">계정 탈퇴</h3>
+          <p class="text-sm text-gray-500">탈퇴 시 모든 정보가 삭제되며 복구할 수 없습니다.</p>
+        </div>
+        <button onclick="deleteAccount()" class="px-4 py-2 border border-red-500 text-red-500 rounded-lg hover:bg-red-50 transition text-sm font-medium">
+          계정 탈퇴
+        </button>
+      </div>
+    </section>
+
+    <!-- 저장 버튼 -->
+    <div class="flex gap-3">
+      <button onclick="goBack()" class="flex-1 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium">
+        취소
+      </button>
+      <button onclick="saveProfile()" class="flex-1 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition font-medium">
+        저장
+      </button>
+    </div>
+  </main>
+
+  <script src="../../js/mypage/profile.js"></script>
+</body>
+</html>
