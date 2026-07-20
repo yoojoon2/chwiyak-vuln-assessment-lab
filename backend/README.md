@@ -1,54 +1,108 @@
 ## 디렉터리 구조
 
 ```
-backend/                       # ⬅ Node.js 백엔드 루트
-├── src/
-│   ├── api/                   # ⭐ 기능별 API 라우트 및 로직
-│   │   ├── users/             # 사용자 공통 (인증: 로그인/로그아웃/회원가입 등)
+backend/                  # :arrow_left: Node.js 백엔드 루트
+├── src/                  # 소스 코드 디렉토리
+│   ├── api/              # ⭐️ 기능별 API 라우트 및 로직
+│   │   ├── users/        # 사용자 (구매자, 판매자, 관리자 프로필 등) — 인증(로그인/로그아웃/회원가입) 포함
 │   │   │   ├── user.routes.js
 │   │   │   ├── user.controller.js
 │   │   │   └── user.middleware.js
 │   │   │
-│   │   ├── buyer/             # 구매자 프로필
-│   │   ├── buyerCart/         # 장바구니
-│   │   ├── buyerOrders/       # 구매자 주문
-│   │   ├── buyerCoupons/      # 구매자 쿠폰
-│   │   ├── buyerPoints/       # 구매자 포인트
-│   │   ├── buyerWishlist/     # 위시리스트
-│   │   │   └── (각 폴더: *.routes.js / *.controller.js / *.service.js / *.model.js)
+│   │   ├── products/     # 상품 (목록, 상세, 검색, 카테고리)
+│   │   │   ├── product.routes.js
+│   │   │   ├── product.controller.js
+│   │   │   ├── product.service.js
+│   │   │   └── product.model.js
 │   │   │
-│   │   ├── seller/            # 판매자 프로필, 대시보드, 정산
-│   │   │   ├── seller.routes.js / controller.js / service.js / model.js
-│   │   │   ├── sellerDashboard.controller.js / routes.js
-│   │   │   └── sellerSettlement.controller.js / routes.js
-│   │   ├── sellerOrders/      # 판매자 주문 관리
-│   │   ├── sellerProducts/    # 판매자 상품 등록·관리
+│   │   ├── cart/         # 장바구니
+│   │   │   ├── cart.routes.js
+│   │   │   ├── cart.controller.js
+│   │   │   └── cart.service.js     # (DB 모델 없이 세션/Redis 가능)
 │   │   │
-│   │   ├── admin/             # 관리자 (admin.js)
-│   │   ├── products/          # 상품 (목록/상세/검색/카테고리)
-│   │   ├── orders/            # 주문 공통
-│   │   ├── reviews/           # 리뷰
-│   │   ├── notice/            # 공지사항
-│   │   └── support/           # 고객센터(문의/FAQ 등)
+│   │   ├── orders/       # 주문
+│   │   │   ├── order.routes.js
+│   │   │   ├── order.controller.js
+│   │   │   ├── order.service.js
+│   │   │   └── order.model.js      # (Order, OrderItem)
+│   │   │
+│   │   ├── reviews/      # 리뷰
+│   │   │   ├── review.routes.js
+│   │   │   ├── review.controller.js
+│   │   │   ├── review.service.js
+│   │   │   └── review.model.js
+│   │   │
+│   │   ├── wishlists/    # 위시리스트
+│   │   │   ├── wishlist.routes.js
+│   │   │   ├── wishlist.controller.js
+│   │   │   ├── wishlist.service.js
+│   │   │   └── wishlist.model.js
+│   │   │
+│   │   ├── coupons/      # 쿠폰
+│   │   │   ├── coupon.routes.js
+│   │   │   ├── coupon.controller.js
+│   │   │   ├── coupon.service.js
+│   │   │   └── coupon.model.js     # (Coupon, BuyerCoupon)
+│   │   │
+│   │   ├── points/       # 포인트
+│   │   │   ├── point.routes.js
+│   │   │   ├── point.controller.js # (주로 내역 조회)
+│   │   │   ├── point.service.js
+│   │   │   └── point.model.js
+│   │   │
+│   │   ├── addresses/    # 배송지 (구매자)
+│   │   │   ├── address.routes.js
+│   │   │   ├── address.controller.js
+│   │   │   ├── address.service.js
+│   │   │   └── address.model.js    # (BuyerAddress)
+│   │   │
+│   │   ├── settlements/  # 정산 (판매자)
+│   │   │   ├── settlement.routes.js
+│   │   │   ├── settlement.controller.js
+│   │   │   ├── settlement.service.js
+│   │   │   └── settlement.model.js # (SellerSettlement)
+│   │   │
+│   │   ├── notices/      # 공지사항
+│   │   │   ├── notice.routes.js
+│   │   │   ├── notice.controller.js
+│   │   │   ├── notice.service.js
+│   │   │   └── notice.model.js
+│   │   │
+│   │   ├── qna/          # 문의사항 (supportBoard)
+│   │   │   ├── qna.routes.js
+│   │   │   ├── qna.controller.js
+│   │   │   ├── qna.service.js
+│   │   │   └── qna.model.js      # (QnaBoard)
+│   │   │
+│   │   ├── faq/          # FAQ
+│   │   │   ├── faq.routes.js
+│   │   │   ├── faq.controller.js
+│   │   │   ├── faq.service.js
+│   │   │   └── faq.model.js      # (FAQ 모델 필요)
+│   │   │
+│   │   └── admin/        # 관리자 전용 기능 (예: 사용자 목록 조회/관리)
+│   │       ├── admin.routes.js
+│   │       ├── admin.controller.js
+│   │       └── admin.service.js
 │   │
-│   ├── middleware/            # 공통 미들웨어 (요청 중간 처리)
-│   ├── utils/                 # 공통 유틸리티
-│   └── app.js                 # 앱 엔트리포인트
+│   ├── config/           # 설정 파일 (DB, JWT secret, 환경변수 로드)
+│   │   ├── index.js          # 설정 통합 및 내보내기
+│   │   ├── database.js       # DB 연결 설정 (ORM 설정 포함)
+│   │   └── jwt.js            # JWT 관련 설정
+│   │
+│   ├── middleware/       # 미들웨어 (요청 중간 처리)
+│   │   ├── auth.middleware.js # JWT 토큰 검증 등 인증 처리
+│   │   ├── error.middleware.js # 에러 핸들링
+│   │   └── validator.middleware.js # 요청 데이터 유효성 검사 (선택적)
+│   │
+│   ├── utils/            # 공통 유틸리티 함수
+│   │   ├── asyncHandler.js   # async 함수 에러 처리 래퍼
+│   │   └── responseFormatter.js # 일관된 응답 형식 생성
+│   │
+│   └── app.js            # Express 앱 생성, 미들웨어/라우트 연결
 │
-├── public/                    # 정적 리소스 (상품 이미지 등)
-├── uploads/                   # 업로드 파일 저장 경로
-├── database_schema.sql        # DB 스키마 및 초기 시드 데이터
-├── .env.example                # 필요 환경변수 목록
-└── package.json
+├── .env                  # 환경 변수 (DB 접속 정보, JWT 비밀키 등)
+├── .gitignore
+├── package.json          # 프로젝트 정보 및 의존성 관리
+└── README.md             # 프로젝트 설명
 ```
-
-> `config/` 폴더(DB 접속 정보 등)는 보안상 `.gitignore`로 제외되어 저장소에 포함되지 않습니다.
-
-## 주요 기술
-
-- Node.js + Express
-- MySQL (mysql2)
-- 인증: JWT (Access/Refresh), bcryptjs
-- 파일 업로드: multer, multer-s3, AWS S3
-- 메일 발송: SendGrid, Nodemailer
-- 보안: helmet, xss, validator, cors

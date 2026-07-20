@@ -12,10 +12,11 @@
 
 ## 디렉터리 구조
 
+```
 ChwiYak-yoojoon_final/
-├── backend/ # Node.js + Express + MySQL 백엔드
-└── frontend/ # 정적 HTML/JS + Tailwind 프론트엔드
-
+├── backend/     # Node.js + Express + MySQL 백엔드
+└── frontend/    # 정적 HTML/JS + Tailwind 프론트엔드
+```
 
 세부 구조는 각 디렉터리의 README를 참고하세요.
 - [backend/README.md](./backend/README.md)
